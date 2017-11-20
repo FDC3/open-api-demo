@@ -1,0 +1,26 @@
+{
+    "plugin": [
+        {
+            "name": "open-app-directory-test",
+            "version": "2.0.5",
+            "link": "http://localhost:8099/plugin/open.zip"
+        }
+    ],
+    "devtools_port": 9090,
+    "startup_app": {
+        "name": "Financial App Directory Demo",
+        "description": "Demo of OpenFin Financial App Directory",
+        "url": "http://localhost:8099/demo/index.html",
+        "applicationIcon": "http://localhost:8099/img/openfin.ico",
+        "uuid": "OpenFin-Fin-Directory-123Demo",
+        "autoShow": true,
+        "defaultCentered": true,
+        "frame": true,
+        "defaultHeight": 600,
+        "defaultWidth": 800
+    },
+    "runtime": {
+        "version": "8.56.26.26"
+    },
+    "shortcut": {}
+}

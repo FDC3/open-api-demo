@@ -1,0 +1,8 @@
+{
+  "name": "open-app-directory-test",
+  "version": "2.0.5",
+  "description": "Example of creating open app directory",
+  "author": "noLimitNimit",
+  "type": "module",
+  "target": "main.js"
+}

@@ -1,0 +1,21 @@
+<h1 id="context"></h1>
+<p>*current context</p>>
+
+<script>
+function addCtx(ctx){
+    document.getElementById("context").innerText = ctx;
+}
+
+fin.desktop.main(function(){
+  let context = new URLSearchParams(document.location.search).get("context");
+    addCtx(context);
+
+  fin.desktop.Application.getCurrent().addEventListener("run-requested",evt =>{
+      console.log(evt);
+      let context = new URLSearchParams(evt.userAppConfigArgs).get("context");
+      addCtx(context);
+  });
+  
+});
+</script>
+

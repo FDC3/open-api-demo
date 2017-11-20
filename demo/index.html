@@ -1,0 +1,39 @@
+<style>
+    .open-link {
+        font-size: 16pt;
+        text-decoration: underline;
+        color:blue;
+        margin-top:10px;
+    }
+
+    .open-link:hover {
+        cursor: pointer;
+    }
+
+</style>
+<of-toolbar></of-toolbar>
+<h1>Financial App Directory</h1>
+<h2>Launch Apps Using the 'open' API</h2>
+<ul>
+    <li class="open-link">fin.plugin.open("hyperblotter")</li>
+    <li class="open-link">fin.plugin.open("finsemble")</li>
+    <li class="open-link">fin.plugin.open("lightstreamer")</li>
+    <li class="open-link">fin.plugin.open("gm-watchlist")</li>
+</ul>
+
+<h2>Contextual Link Examples</h2>
+<ul>
+
+    <li class="open-link">fin.plugin.open("nick-test","ibm")</li>
+    <li class="open-link">fin.plugin.open("nick-test","msft")</li>
+    <li class="open-link">fin.plugin.open("nick-test","goog")</li>
+</ul>
+
+<script>
+    let links = document.querySelectorAll(".open-link");
+    links.forEach(l => {
+        l.addEventListener("click",evt =>{
+         eval(evt.target.innerText);
+        });
+    });
+</script>

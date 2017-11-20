@@ -1,0 +1,17 @@
+{
+    "devtools_port": 9090,
+    "startup_app": {
+        "url": "http://localhost:8099/index.html",
+        "applicationIcon": "http://localhost:8099/favicon.ico",
+        "uuid": "Nick-Test-123Demo",
+        "autoShow": true,
+        "defaultCentered": true,
+        "frame": true,
+        "defaultHeight": 600,
+        "defaultWidth": 800
+    },
+    "runtime": {
+        "version": "8.56.26.26"
+    },
+    "shortcut": {}
+}
