@@ -2,20 +2,31 @@ fin.desktop.main(function() {
   if (typeof fin.plugin === "undefined") {
     fin.plugin = {};
   }
-  fin.plugin.open = async function(name, context) {
+  fdc3.open = async function(name, int, ctx) {
     try {
       const headers = new Headers();
       const response = await fetchJson(
-        `https://open-app-directory-dev.openfin.co/api/v1/apps/${name}`,
+        `https://open-app-directory.openfin.co/api/v1/apps/${name}`,
         "GET",
         headers
       );
       console.log(response);
 
-      if (response.active) {
+      if (response) {
+          //if ctx isn't defined, context is the second arg, else intent is second arg and context is third
+          let intent = typeof(ctx) === "undefined" ? null : int;
+          let context = intent ? ctx : int;
+          
           let url = (response.app_config.replace("https://","fins://").replace("http://","fin://"));
+          if (intent){
+            url = url + "?$$intent=" + intent;
+          }
           if (context){
-              url = url + "?$$context=" + context;
+              //convert context object to url format
+              if (!intent){
+                url = url + "?";
+              }
+              url = url + "&$$context=" + encodeURI(JSON.stringify(context));
           }
           document.location.href = url;
         /*fin.desktop.Application.createFromManifest(
@@ -34,6 +45,39 @@ fin.desktop.main(function() {
       console.log(err);
     }
   };
+
+function toContextString(ctx){
+  /*** 
+   this: {
+    object:"fdc3-context",
+    data:[
+      {name:"ibm",
+       type:"security",
+       id:{
+         ticker:"ibm"
+       }},
+       {name:"apple",
+       type:"security",
+       id:{
+         ticker:"aapl",
+         RIC:"aapl.n"
+       }}
+    ]
+  } 
+
+  becomes this:
+  ?intent=chart.show&context-name=ibm,apple&context-type=security,security&ibm-ticker=ibm&aapl-ticker=aapl&appl-RIC=aapl.n
+  ***/
+
+  let context = "";
+  if (ctx.data && ctx.data.length){
+    //filter out the item names and build into one list
+    //let names = ctx.data.map()
+    //filter out the item types and build into one list
+    //for each name, append the identifier n/v with name as a prefix
+  }
+  return context;
+}
 
   function fetchJson(url, method, headers) {
     return new Promise((resolve, reject) => {

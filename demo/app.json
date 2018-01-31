@@ -1,5 +1,5 @@
 {
-    "plugin": [
+    "plugins": [
         {
             "name": "open-app-directory-test",
             "version": "2.0.5",
@@ -20,7 +20,7 @@
         "defaultWidth": 800
     },
     "runtime": {
-        "version": "8.56.26.26"
+        "version": "8.56.27.75"
     },
     "shortcut": {}
 }
