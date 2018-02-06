@@ -2,7 +2,7 @@
     "plugins": [
         {
             "name": "open-app-directory-test",
-            "version": "2.0.5",
+            "version": "2.0.8",
             "link": "http://localhost:8099/plugin/open.zip"
         }
     ],

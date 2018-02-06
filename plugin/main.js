@@ -1,11 +1,47 @@
 fin.desktop.main(function() {
-  if (typeof fin.plugin === "undefined") {
-    fin.plugin = {};
+  const headers = new Headers();
+
+  if (typeof fdc3 === "undefined") {
+    fdc3 = {};
   }
+
+      
+  fdc3.get =  function(name, intent){
+    return new Promise(resolve => {
+      try {
+       
+        let response =  [];
+        
+        fetchJson(
+          "https://open-app-directory.openfin.co/api/v1/apps",
+          "GET",
+          headers
+        ).then(r => {
+            response = r;
+
+
+        if (response) {
+         if (intent){
+             response = response.filter(item => {return item.intents === intent;});
+         }   
+         if (name){
+             response = response.filter(item => {return item.name.startsWith(name);});
+         }
+         resolve(response);
+
+        }
+        });
+       
+      } catch (err) {
+          console.log(err);
+          resolve([]);
+      }
+    });
+  };
+
   fdc3.open = async function(name, int, ctx) {
     try {
-      const headers = new Headers();
-      const response = await fetchJson(
+      let response = await fetchJson(
         `https://open-app-directory.openfin.co/api/v1/apps/${name}`,
         "GET",
         headers
