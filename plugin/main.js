@@ -13,7 +13,7 @@ fin.desktop.main(function() {
         let response =  [];
         
         fetchJson(
-          "https://open-app-directory.openfin.co/api/v1/apps",
+          "https://app-directory.openfin.co/api/v1/apps",
           "GET",
           headers
         ).then(r => {
@@ -42,7 +42,7 @@ fin.desktop.main(function() {
   fdc3.open = async function(name, int, ctx) {
     try {
       let response = await fetchJson(
-        `https://open-app-directory.openfin.co/api/v1/apps/${name}`,
+        `https://app-directory.openfin.co/api/v1/apps/${name}`,
         "GET",
         headers
       );
@@ -53,7 +53,7 @@ fin.desktop.main(function() {
           let intent = typeof(ctx) === "undefined" ? null : int;
           let context = intent ? ctx : int;
           
-          let url = (response.app_config.replace("https://","fins://").replace("http://","fin://"));
+          let url = (response.manifest_url.replace("https://","fins://").replace("http://","fin://"));
           if (intent){
             url = url + "?$$intent=" + intent;
           }
